@@ -88,7 +88,24 @@ cp backend/.env.example backend/.env
 | `SECRET_KEY` | `super-secret-key-change-in-production` | JWT signing key |
 | `ACCESS_TOKEN_EXPIRE_MINUTES` | `30` | Access token TTL |
 | `REFRESH_TOKEN_EXPIRE_DAYS` | `7` | Refresh token TTL |
-| `CORS_ORIGINS` | `["http://localhost:5173"]` | Allowed CORS origins |
+| `CORS_ORIGINS` | `["http://localhost:5173"]` | Allowed CORS origins (supports `*`, JSON array, or comma-separated) |
+
+**Frontend** (`frontend/.env` or `frontend/.env.production`):
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `VITE_API_URL` | `http://localhost:8000/api` | Backend API base URL |
+| `VITE_WS_URL` | `http://localhost:8000` | WebSocket server URL |
+
+> Frontend env vars are replaced at **build time** by Vite. For production, configure `frontend/.env.production`.
+
+## Deployment
+
+**Backend** is deployed on [Seenode](https://www.seenode.com/). Set environment variables in the Seenode dashboard.
+
+**Frontend** is deployed on [Cloudflare Pages](https://pages.cloudflare.com/) connected to GitHub. Build settings:
+- **Build command:** `cd frontend && npm install && npm run build`
+- **Build output directory:** `frontend/dist`
 
 ## API Endpoints
 
