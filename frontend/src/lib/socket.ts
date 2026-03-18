@@ -11,7 +11,7 @@ export function connectSocket(token: string): Socket {
     socket.disconnect()
   }
 
-  socket = io('http://localhost:8000', {
+  socket = io(import.meta.env.VITE_WS_URL || 'http://localhost:8000', {
     auth: { token },
     transports: ['websocket', 'polling'],
     reconnection: true,
