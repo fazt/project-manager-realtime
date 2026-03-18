@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.vite/
+
+
+.playwright-cli/
