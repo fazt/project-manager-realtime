@@ -85,7 +85,7 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
   },
 
   updateProject: async (id: string, data: ProjectUpdate) => {
-    const response = await api.put<Project>(`/projects/${id}`, data)
+    const response = await api.patch<Project>(`/projects/${id}`, data)
     set((state) => ({
       projects: state.projects.map((p) => (p.id === id ? response.data : p)),
       currentProject: state.currentProject?.id === id ? response.data : state.currentProject,
@@ -136,7 +136,7 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
   },
 
   updateStatus: async (projectId: string, statusId: string, data: StatusUpdate) => {
-    const response = await api.put<TaskStatus>(`/projects/${projectId}/statuses/${statusId}`, data)
+    const response = await api.patch<TaskStatus>(`/projects/${projectId}/statuses/${statusId}`, data)
     set((state) => ({
       statuses: state.statuses
         .map((s) => (s.id === statusId ? response.data : s))
@@ -171,7 +171,7 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
   },
 
   updateLabel: async (projectId: string, labelId: string, data: LabelUpdate) => {
-    const response = await api.put<TaskLabel>(`/projects/${projectId}/labels/${labelId}`, data)
+    const response = await api.patch<TaskLabel>(`/projects/${projectId}/labels/${labelId}`, data)
     set((state) => ({
       labels: state.labels.map((l) => (l.id === labelId ? response.data : l)),
     }))

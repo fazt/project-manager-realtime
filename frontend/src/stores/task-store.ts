@@ -69,7 +69,7 @@ export const useTaskStore = create<TaskState>((set, get) => ({
   },
 
   updateTask: async (projectId: string, taskId: string, data: TaskUpdate) => {
-    const response = await api.put<Task>(`/projects/${projectId}/tasks/${taskId}`, data)
+    const response = await api.patch<Task>(`/projects/${projectId}/tasks/${taskId}`, data)
     const updated = response.data
     set((state) => {
       const newTasks = { ...state.tasks }
@@ -142,7 +142,7 @@ export const useTaskStore = create<TaskState>((set, get) => ({
     })
 
     try {
-      await api.put(`/projects/${projectId}/tasks/${taskId}/move`, data)
+      await api.post(`/projects/${projectId}/tasks/${taskId}/move`, data)
     } catch {
       // Revert on error
       await get().fetchTasks(projectId)

@@ -62,7 +62,7 @@ export function TaskComments({ projectId, taskId }: TaskCommentsProps) {
   const handleEdit = async (id: string) => {
     if (!editContent.trim()) return
     try {
-      const response = await api.put<TaskComment>(
+      const response = await api.patch<TaskComment>(
         `/projects/${projectId}/tasks/${taskId}/comments/${id}`,
         { content: editContent.trim() }
       )
